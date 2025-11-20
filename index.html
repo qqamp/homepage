@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李洛維 (Luo-Wei Lee) | Ph.D. | 智慧政府與科技法制</title>
+    <style>
+        /* --- 基礎設定 --- */
+        :root {
+            --primary-color: #003366; /* 穩重的學術深藍 */
+            --secondary-color: #4a6fa5; 
+            --accent-color: #d4af37; /* 金色 */
+            --silver-color: #A9A9A9; /* 銀色 */
+            --text-color: #333;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft JhengHei", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        a { color: var(--primary-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* --- 導覽列 --- */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand { font-weight: bold; font-size: 1.2rem; color: var(--primary-color); }
+        .nav-links a { margin-left: 20px; font-size: 0.95rem; color: #555; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- 區塊通用設定 --- */
+        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+        h2 { 
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--accent-color); 
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+        }
+        h3 { margin-top: 35px; color: #444; border-left: 4px solid var(--secondary-color); padding-left: 12px; font-size: 1.25rem; }
+        h4 { margin-top: 20px; color: #555; font-weight: bold; }
+
+        /* --- 首頁 (Hero Section) --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e9ecef 100%);
+            padding: 90px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%; /* 圓形裁切 */
+            object-fit: cover; /* 確保照片填滿不變形 */
+            object-position: center top; /* 重點對齊中上方 (臉部) */
+            border: 6px solid var(--white);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            background-color: #ccc;
+            flex-shrink: 0;
+        }
+        .hero-text { max-width: 650px; }
+        .hero-text h1 { margin: 0 0 8px 0; font-size: 2.4rem; color: var(--primary-color); letter-spacing: 1px; }
+        .hero-text h2 { 
+            border: none; padding: 0; margin: 0 0 20px 0; 
+            font-size: 1.25rem; color: #555; font-weight: normal; 
+        }
+        
+        /* 強調文官經驗的小標籤 */
+        .exp-badge {
+            display: inline-block;
+            background-color: #eef2f7;
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 1px solid #d1d9e6;
+        }
+
+        .hero-contact { font-size: 0.95rem; color: #666; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+        .hero-contact div { display: flex; align-items: center; }
+        
+        .tagline { 
+            font-style: italic; 
+            color: #2c3e50 !important; 
+            font-weight: 500; 
+            margin-top: 20px !important;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 18px;
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            line-height: 1.8;
+        }
+
+        /* --- 標籤與工具 --- */
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .tag { 
+            background: var(--white); 
+            border: 1px solid #ddd;
+            color: var(--primary-color);
+            padding: 6px 16px; 
+            border-radius: 25px; 
+            font-size: 0.9rem; 
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+        .tool-badge {
+            background-color: #333;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: Consolas, Monaco, monospace;
+            margin-right: 6px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        /* --- 列表樣式 --- */
+        ul.pub-list { list-style-type: none; padding: 0; }
+        ul.pub-list li { 
+            margin-bottom: 20px; 
+            padding-left: 25px; 
+            position: relative; 
+            font-size: 0.95rem;
+            text-align: justify;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+        }
+        ul.pub-list li::before {
+            content: "➤";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            top: 5px;
+        }
+        ul.pub-list li:last-child { border-bottom: none; }
+
+        /* --- 狀態標籤 (WIP) --- */
+        .label-wip-gold {
+            background-color: var(--accent-color); 
+            color: #fff;
+            padding: 2px 8px; 
+            font-size: 0.75rem; 
+            border-radius: 3px; 
+            margin-right: 8px; 
+            vertical-align: text-bottom;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+        }
+        .label-wip-silver {
+            background-color: var(--silver-color); 
+            color: #fff;
+            padding: 2px 8px; 
+            font-size: 0.75rem; 
+            border-radius: 3px; 
+            margin-right: 8px; 
+            vertical-align: text-bottom;
+            font-weight: bold;
+        }
+        .label-tssci { 
+            background-color: #003366; color: #fff; 
+            padding: 1px 6px; font-size: 0.75rem; border-radius: 3px; margin-right: 5px;
+        }
+
+        /* --- 頁尾 --- */
+        footer { text-align: center; padding: 40px 0; color: #777; font-size: 0.9rem; background: #f1f1f1; margin-top: 80px; }
+
+        /* --- 手機版響應式 --- */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; gap: 20px;}
+            .nav-links { display: none; } 
+            .tagline { border-left: none; border-top: 4px solid var(--accent-color); padding-top: 20px; padding-left: 15px; text-align: left; border-radius: 10px; }
+            .hero-contact { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-brand">李洛維 (Luo-Wei Lee) | Ph.D.</div>
+        <div class="nav-links">
+            <a href="#about">關於我</a>
+            <a href="#research">研究領域</a>
+            <a href="#publications">學術著作</a>
+            <a href="#teaching">教學課程</a>
+            <a href="#contact">聯絡資訊</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="about">
+        <img src="profile.jpg" alt="李洛維博士演講照片" class="profile-img">
+        
+        <div class="hero-text">
+            <h1>李洛維 博士</h1>
+            <h2>臺灣警察專科學校 海洋巡防科 助理教授</h2>
+            
+            <div class="hero-contact">
+                <div>📧 serpent910@gmail.com</div>
+                <div>📞 (02) 2230-8512 #3212</div>
+            </div>
+            
+            <p class="tagline">
+                結合豐富的文官實務與法律教學經驗，專注於生成式AI與社會科學量化研究。<br>
+                致力於探討<strong>「演算法下的守門人：決策偏誤與正當性建構」</strong>，<br>
+                推動具備課責性的智慧政府與循證決策體系之創新。
+            </p>
+        </div>
+    </header>
+
+    <section id="research">
+        <h2>研究焦點 (Research Interests)</h2>
+        <p>
+            以量化方法為工具，探討人工智慧在政府部門的應用、風險與法制規範。
+            特別關注在<strong>科技執法</strong>場域中，演算法如何影響行政裁量、專業判斷與人權保障。
+        </p>
+        
+        <div class="tags">
+            <span class="tag">#生成式AI與智慧政府</span>
+            <span class="tag">#演算法偏誤與課責</span>
+            <span class="tag">#科技法與數位人權</span>
+            <span class="tag">#資料治理 (Data Governance)</span>
+            <span class="tag">#循證決策 (Evidence-Based Policy)</span>
+            <span class="tag">#社會科學量化研究</span>
+        </div>
+
+        <div style="margin-top: 30px; background: #f4f6f9; padding: 15px; border-radius: 8px;">
+            <strong style="color:#444;">🛠️ 數據分析與研究工具：</strong>
+            <div style="margin-top:10px;">
+                <span class="tool-badge">Python</span>
+                <span class="tool-badge">SPSS</span>
+                <span class="tool-badge">SmartPLS</span>
+                <span class="tool-badge">AMOS</span>
+                <span class="tool-badge">R</span>
+                <span class="tool-badge">JASP</span>
+                <span class="tool-badge">SEM 結構方程模型</span>
+            </div>
+        </div>
+
+        <h3>🚀 進行中研究計畫 (Work in Progress)</h3>
+        <ul class="pub-list">
+            <li>
+                <span class="label-wip-gold">投稿中</span>
+                <strong>李洛維</strong>. (Under Review). 資訊素養與資料治理成熟度：生成式AI下的文官轉型挑戰.
+            </li>
+            <li>
+                <span class="label-wip-silver">撰稿中</span>
+                <strong>李洛維</strong>. (Preparation). 使用者為何分享資料？數位金融服務中隱私與資料效用的決策權衡.
+            </li>
+            <li>
+                <span class="label-wip-silver">撰稿中</span>
+                <strong>李洛維</strong>. (Preparation). 政府資料治理的知與行：內部觀點評估架構 (量化分析).
+            </li>
+        </ul>
+    </section>
+
+    <section id="publications">
+        <h2>學術著作 (Publications)</h2>
+        
+        <h3>📝 期刊論文 (Journal Articles)</h3>
+        <ul class="pub-list">
+            <li>
+                <span class="label-tssci">TSSCI</span>
+                <strong>李洛維</strong>、朱斌妤、曾憲立（2023）。推動政府資料治理的關鍵因素：內部利害關係人角度的因果模型。《公共行政學報》，64，35-77。
+            </li>
+            <li>
+                <strong>李洛維</strong>、朱斌妤（2021）。推動服務型智慧政府的核心引擎－資料治理的挑戰與對策。《文官制度》，13（2），115-151。
+            </li>
+        </ul>
+
+        <h3>🎤 研討會論文 (Conference Papers)</h3>
+        <ul class="pub-list">
+            <li>
+                <strong>李洛維</strong>（2025）。科層失靈或能力崛起？從資料治理成熟度診斷我國文官制度的轉型挑戰。《文官制度》跨世代學術交流圓桌論壇，台北。
+            </li>
+            <li>
+                吳冠杰、<strong>李洛維</strong>（2024）。警察「警察敘事能力與溝通」課程學習成效評估-以警專生學習執行治安及交通勤務為例。113年道路交通管理實務與學術研討會，台北。
+            </li>
+            <li>
+                王旭昇、沈明昌、<strong>李洛維</strong>（2023）。警察敘事能力與溝通教學成效之比較研究。112年臺灣警察專科學校精進校務發展研究計畫發表會，台北。
+            </li>
+            <li>
+                王旭昇、沈明昌、<strong>李洛維</strong>（2022）。警察敘事能力與溝通教學成效研究。111年臺灣警察專科學校精進校務發展研究計畫發表會，台北。
+            </li>
+            <li>
+                廖興中、黃婉玲、<strong>李洛維</strong>、朱斌妤（2019）。臺灣各鄉鎮數位發展分類研究：集群分析與潛在全象分析的啟發。2019年臺灣公共行政與公共事務系所聯合會（TASPAA）年會，台中。
+            </li>
+            <li>
+                蕭乃沂、李蔡彥、楊子申、<strong>李洛維</strong>、許鈺昕（2018）。新時代文官數位治理核心能力的界定與培訓。2018年臺灣公共行政與公共事務系所聯合會（TASPAA）年會，台北。
+            </li>
+            <li>
+                <strong>Lee, L.W.</strong>, and Chu, P.Y. (2018). A User Approach to Open Government Data Impact Assessment. <em>The 18th European Conference on eGovernment</em>, University of Santiago de Compostela.
+            </li>
+            <li>
+                <strong>Lee, L.W.</strong>, and Tseng, H.L. (2018). Citizen Participation and e-Government usage Satisfaction in Taiwan. <em>The 18th European Conference on eGovernment</em>, University of Santiago de Compostela.
+            </li>
+        </ul>
+
+        <h3>📖 專書篇章 (Book Chapters)</h3>
+        <ul class="pub-list">
+            <li>
+                朱斌妤、<strong>李洛維</strong>（2023）。何謂資料治理？載於朱斌妤等編，《政府資料治理：理論建構與個案演練》（頁5-28）。五南。
+            </li>
+            <li>
+                朱斌妤、<strong>李洛維</strong>（2020）。看不見的幕後英雄：淺談資料治理。載於陳敦源等編，《政府數位轉型：一本必讀的入門書》（頁155-164）。五南。
+            </li>
+        </ul>
+
+        <h3>📰 其他發表 (Other Publications)</h3>
+        <ul class="pub-list">
+            <li><strong>李洛維</strong>、朱斌妤（2021）。我究竟同意了什麼？淺談智慧政府下MyData面臨的困難與挑戰。《T&D飛訊》，287，1-36。</li>
+            <li><strong>李洛維</strong>、朱斌妤（2019）。公部門資料治理的發展與挑戰。《T&D飛訊》，253，1-26。</li>
+        </ul>
+    </section>
+
+    <section id="teaching" style="background-color: #f8f9fa; border-radius: 8px;">
+        <h2>教學與實務 (Teaching & Practice)</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div>
+                <h4>🏛️ 法律與人權課程</h4>
+                <p style="font-size:0.9rem; color:#666; margin-bottom:10px;">結合執法實務案例，探討公權力行使之邊界。</p>
+                <ul>
+                    <li>憲法與人權保障</li>
+                    <li>行政法</li>
+                    <li>人權公約與多元文化</li>
+                </ul>
+            </div>
+            <div>
+                <h4>🤖 科技與跨域專題</h4>
+                <p style="font-size:0.9rem; color:#666; margin-bottom:10px;">探討數位治理趨勢與科技執法倫理。</p>
+                <ul>
+                    <li>智慧治理與未來趨勢專題</li>
+                    <li>科技法跨界研究 (規劃中)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>聯絡資訊 (Contact)</h2>
+        <div style="background: #fff; padding: 30px; border-left: 5px solid var(--primary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <p><strong>臺灣警察專科學校 海洋巡防科</strong></p>
+            <ul style="list-style: none; padding: 0; line-height: 2;">
+                <li>📍 地址：116 台北市文山區興隆路三段153號</li>
+                <li>📞 電話：(02) 2230-8512 #3212</li>
+                <li>📧 信箱：<a href="mailto:serpent910@gmail.com">serpent910@gmail.com</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 李洛維 (Luo-Wei Lee). All Rights Reserved.</p>
+        <p style="font-size:0.8rem; color: #999;">Updated: 2025.11</p>
+    </footer>
+
+</body>
+</html>
