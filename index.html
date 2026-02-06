@@ -95,7 +95,7 @@
             border: 1px solid #d1d9e6;
         }
 
-        .hero-contact { font-size: 0.95rem; color: #666; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+        .hero-contact { font-size: 0.95rem; color: #666; margin-bottom: 20px; display: flex; gap: 6px; flex-direction: column; }
         .hero-contact div { display: flex; align-items: center; }
         
         .tagline { 
@@ -197,7 +197,29 @@
             .tagline { border-left: none; border-top: 4px solid var(--accent-color); padding-top: 20px; padding-left: 15px; text-align: left; border-radius: 10px; }
             .hero-contact { justify-content: center; }
         }
-    </style>
+		
+		.section-compact {
+            padding-top: 35px;
+            padding-bottom: 35px;
+        }
+        
+		/* 收斂四大主區塊之間的距離（Research / Honors / Publications / Teaching） */
+		.section-compact {
+			padding-top: 28px;
+			padding-bottom: 28px;
+		}
+
+		/* 把每個 section 標題底下的空白縮小 */
+		.section-compact > h2 {
+			margin-bottom: 18px;
+		}
+
+		/* 相鄰 section 的距離：只保留一個「段落」的節奏，不要像簡報 */
+		.section-compact + .section-compact {
+			margin-top: -10px; /* 這行是關鍵：直接吃掉一部分上下 padding 的重疊感 */
+		}
+
+   </style>
 </head>
 <body>
 
@@ -208,7 +230,6 @@
             <a href="#research">研究領域</a>
             <a href="#publications">學術著作</a>
             <a href="#teaching">教學課程</a>
-            <a href="#contact">聯絡資訊</a>
         </div>
     </nav>
 
@@ -219,27 +240,19 @@
             <h1>李洛維 博士</h1>
             <h2>臺灣警察專科學校 海洋巡防科 助理教授</h2>
             
-           <div class="hero-contact">
-               <div>📧 serpent910@gmail.com</div>
-               <div>📞 (02) 2230-8512 #3212</div>
-               </div>
-           <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
-               📍 **通訊地址：**116 台北市文山區興隆路三段153號
-    </p>
-            
-            <p class="tagline">
-                結合豐富文官實務與法律教學經驗，專注於生成式AI與社會科學量化研究。<br>
-                致力於探討<strong>演算法下守門人之決策偏誤與正當性建構</strong>，<br>
-                推動具備課責性的智慧政府與循證決策體系之創新。
-            </p>
+            <div class="hero-contact">
+                <div>📍 116 台北市文山區興隆路三段153號</div>
+				<div>📧 serpent910@gmail.com</div>
+                <div>📞 (02) 2230-8512 #3212</div>
+            </div>
         </div>
     </header>
 
-    <section id="research">
+    <section id="research" class="section-compact">
         <h2>研究焦點 (Research Interests)</h2>
         <p>
             以量化方法為工具，探討人工智慧在政府部門的應用、風險與法制規範。
-            特別關注在科技執法場域中，演算法如何影響行政裁量、專業判斷與人權保障。
+            特別關注在<strong>科技執法</strong>場域中，演算法如何影響行政裁量、專業判斷與人權保障。
         </p>
         
         <div class="tags">
@@ -255,12 +268,11 @@
             <strong style="color:#444;">🛠️ 數據分析與研究工具：</strong>
             <div style="margin-top:10px;">
                 <span class="tool-badge">Python</span>
-                <span class="tool-badge">SPSS</span>
+				<span class="tool-badge">R</span>
                 <span class="tool-badge">SmartPLS</span>
                 <span class="tool-badge">AMOS</span>
-                <span class="tool-badge">R</span>
+                <span class="tool-badge">SPSS</span>
                 <span class="tool-badge">JASP</span>
-                <span class="tool-badge">SEM 結構方程模型</span>
             </div>
         </div>
 
@@ -268,20 +280,30 @@
         <ul class="pub-list">
             <li>
                 <span class="label-wip-gold">投稿中</span>
-                <strong>李洛維</strong>. (Under Review). 資訊素養與資料治理成熟度：生成式AI下的文官轉型挑戰.
+                <strong>李洛維</strong>. (Under Review). 從身分治理走向能力治理：資料治理成熟度對我國文官制度改革的啟示.
             </li>
             <li>
-                <span class="label-wip-silver">撰稿中</span>
-                <strong>李洛維</strong>. (Preparation). 使用者為何分享資料？數位金融服務中隱私與資料效用的決策權衡.
-            </li>
-            <li>
-                <span class="label-wip-silver">撰稿中</span>
-                <strong>李洛維</strong>. (Preparation). 政府資料治理的知與行：內部觀點評估架構 (量化分析).
+                <span class="label-wip-gold">投稿中</span>
+                <strong>李洛維</strong>. (Under Review). 使用者為何分享資料？數位金融服務中隱私與資料效用的決策權衡.
             </li>
         </ul>
     </section>
 
-    <section id="publications">
+    <section id="honors" class="section-compact">
+        <h2>個人榮譽 (Honors & Awards)</h2>
+    
+        <ul class="pub-list">
+            <li>
+                <strong>2025</strong>．第二十屆 TASPAA 最佳博士學位論文獎（<strong>特優</strong>）
+            </li>
+            <li>
+                <strong>2025</strong>．國立政治大學 113 學年度博士學位論文獎
+            </li>
+        </ul>
+    </section>
+
+
+    <section id="publications" class="section-compact">
         <h2>學術著作 (Publications)</h2>
         
         <h3>📝 期刊論文 (Journal Articles)</h3>
@@ -340,7 +362,7 @@
         </ul>
     </section>
 
-    <section id="teaching" style="background-color: #f8f9fa; border-radius: 8px;">
+    <section id="teaching" style="background-color: #f8f9fa; border-radius: 8px;" class="section-compact">
         <h2>教學與實務 (Teaching & Practice)</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
             <div>
@@ -369,6 +391,4 @@
     </footer>
 
 </body>
-
 </html>
-
