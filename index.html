@@ -75,13 +75,26 @@
             background-color: #ccc;
             flex-shrink: 0;
         }
-        .hero-text { max-width: 650px; }
-        .hero-text h1 { margin: 0 0 8px 0; font-size: 2.4rem; color: var(--primary-color); letter-spacing: 1px; }
-        .hero-text h2 { 
-            border: none; padding: 0; margin: 0 0 20px 0; 
-            font-size: 1.25rem; color: #555; font-weight: normal; 
-        }
-        
+        /* --- Hero 字級黃金比例校準 --- */
+		.hero-text h1 {
+			font-size: 2.3rem;
+			margin-bottom: 6px;
+		}
+		.hero-text h2 {
+			font-size: 1.25rem;
+			margin-bottom: 12px;
+		}
+		.hero-education {
+			font-size: 0.95rem;
+			color: #555;
+			margin-bottom: 14px;
+		}
+		.hero-contact {
+			font-size: 0.85rem;
+			color: #666;
+			line-height: 1.6;
+		}
+   
         /* 強調文官經驗的小標籤 */
         .exp-badge {
             display: inline-block;
@@ -237,15 +250,20 @@
         <img src="profile.jpg" alt="李洛維博士演講照片" class="profile-img">
         
         <div class="hero-text">
-            <h1>李洛維 博士</h1>
-            <h2>臺灣警察專科學校 海洋巡防科 助理教授</h2>
-            
-            <div class="hero-contact">
-                <div>📍 116 台北市文山區興隆路三段153號</div>
-				<div>📧 serpent910@gmail.com</div>
-                <div>📞 (02) 2230-8512 #3212</div>
-            </div>
-        </div>
+			<h1>李洛維</h1>
+
+			<h2>臺灣警察專科學校 海洋巡防科 助理教授（2025~）</h2>
+
+			<div class="hero-education">
+				國立政治大學公共行政學系 博士（2017~2024）
+			</div>
+    
+			<div class="hero-contact">
+				<div>📍 116 台北市文山區興隆路三段153號</div>
+				<div>📧 <a href="mailto:serpent910@gmail.com">serpent910@gmail.com</a></div>
+				<div>📞 (02) 2230-8512 #3212</div>
+			</div>
+
     </header>
 
     <section id="research" class="section-compact">
@@ -276,15 +294,15 @@
             </div>
         </div>
 
-        <h3>🚀 進行中研究計畫 (Work in Progress)</h3>
+        <h3>🚀 審稿中論文 (Manuscripts Under Review)</h3>
         <ul class="pub-list">
             <li>
-                <span class="label-wip-gold">投稿中</span>
-                <strong>李洛維</strong>. (Under Review). 從身分治理走向能力治理：資料治理成熟度對我國文官制度改革的啟示.
+                <span class="label-wip-gold">Under Review</span>
+                <strong>李洛維</strong>. 從身分治理走向能力治理：資料治理成熟度對我國文官制度改革的啟示。
             </li>
             <li>
-                <span class="label-wip-gold">投稿中</span>
-                <strong>李洛維</strong>. (Under Review). 使用者為何分享資料？數位金融服務中隱私與資料效用的決策權衡.
+                <span class="label-wip-gold">Under Review</span>
+                <strong>李洛維</strong>. 使用者為何分享資料？數位金融服務中隱私與資料效用的決策權衡。
             </li>
         </ul>
     </section>
@@ -301,7 +319,21 @@
             </li>
         </ul>
     </section>
+	
+	<section id="projects" class="section-compact">
+		<h2>委託研究計畫 (Commissioned Research Projects)</h2>
 
+		<ul class="pub-list">
+			<li>
+				<strong>六都數位政策調查</strong>（台灣數位平台經濟協會），
+				<strong>協同主持人，</strong>2025.08–2026.03。
+			</li>
+			<li>
+				<strong>資料管理技術實踐與政策發展資訊服務案</strong>（數位發展部），
+				<strong>顧問，</strong>2025.07–2026.09。
+			</li>
+		</ul>
+	</section>
 
     <section id="publications" class="section-compact">
         <h2>學術著作 (Publications)</h2>
