@@ -44,7 +44,7 @@
         .nav-links a:hover { color: var(--primary-color); }
 
         /* --- 區塊通用設定 --- */
-        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; scroll-margin-top: 80px;}
         h2 { 
             color: var(--primary-color); 
             border-bottom: 3px solid var(--accent-color); 
@@ -66,8 +66,8 @@
         }
 		
         .profile-img {
-            width: 220px;
-            height: 220px;
+            width: 270px;
+            height: 270px;
             border-radius: 50%; /* 圓形裁切 */
             object-fit: cover; /* 確保照片填滿不變形 */
             object-position: center top; /* 重點對齊中上方 (臉部) */
@@ -91,40 +91,17 @@
 			margin-bottom: 14px;
 		}
 		.hero-contact {
-			font-size: 0.85rem;
-			color: #666;
-			line-height: 1.6;
+		font-size: 0.85rem;
+		color: #666;
+		line-height: 1.6;
+		margin-bottom: 8px;
+		display: flex;
+		gap: 6px;
+		flex-direction: column;
 		}
-   
-        /* 強調文官經驗的小標籤 */
-        .exp-badge {
-            display: inline-block;
-            background-color: #eef2f7;
-            color: var(--primary-color);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            border: 1px solid #d1d9e6;
-        }
+.hero-contact div { display: flex; align-items: center; }
 
-        .hero-contact { font-size: 0.95rem; color: #666; margin-bottom: 8px; display: flex; gap: 6px; flex-direction: column; }
-        .hero-contact div { display: flex; align-items: center; }
         
-        .tagline { 
-            font-style: italic; 
-            color: #2c3e50 !important; 
-            font-weight: 500; 
-            margin-top: 20px !important;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 18px;
-            background: rgba(255,255,255,0.6);
-            padding: 15px;
-            border-radius: 0 10px 10px 0;
-            line-height: 1.8;
-        }
-
         /* --- 標籤與工具 --- */
         .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
         .tag { 
@@ -186,16 +163,7 @@
             font-weight: bold;
             box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
         }
-        .label-wip-silver {
-            background-color: var(--silver-color); 
-            color: #fff;
-            padding: 2px 8px; 
-            font-size: 0.75rem; 
-            border-radius: 3px; 
-            margin-right: 8px; 
-            vertical-align: text-bottom;
-            font-weight: bold;
-        }
+
         .label-tssci { 
             background-color: #003366; color: #fff; 
             padding: 1px 6px; font-size: 0.75rem; border-radius: 3px; margin-right: 5px;
@@ -205,17 +173,9 @@
         footer { text-align: center; padding: 40px 0; color: #777; font-size: 0.9rem; background: #f1f1f1; margin-top: 80px; }
 
         /* --- 手機版響應式 --- */
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; gap: 20px;}
-            .nav-links { display: none; } 
-            .tagline { border-left: none; border-top: 4px solid var(--accent-color); padding-top: 20px; padding-left: 15px; text-align: left; border-radius: 10px; }
-            .hero-contact { justify-content: center; }
-        }
-		
-		.section-compact {
-            padding-top: 35px;
-            padding-bottom: 35px;
-        }
+		@media (max-width: 768px) {
+		.hero-contact div { justify-content: center; }
+		}
         
 		/* 收斂四大主區塊之間的距離（Research / Honors / Publications / Teaching） */
 		.section-compact {
@@ -231,6 +191,20 @@
 		/* 相鄰 section 的距離：只保留一個「段落」的節奏，不要像簡報 */
 		.section-compact + .section-compact {
 			margin-top: -10px; /* 這行是關鍵：直接吃掉一部分上下 padding 的重疊感 */
+		}
+		
+		/* --- Teaching 灰色區塊收斂 --- */
+		#teaching {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+
+		#teaching h2 {
+			margin-bottom: 5px;
+		}
+
+		#teaching > div {
+			margin-top: 5px !important;
 		}
 
    </style>
@@ -253,10 +227,10 @@
         <div class="hero-text">
 			<h1>李洛維</h1>
 
-			<h2>臺灣警察專科學校 海洋巡防科 助理教授（2025~）</h2>
+			<h2>臺灣警察專科學校 海洋巡防科 助理教授（2025.08~）</h2>
 
 			<div class="hero-education">
-				國立政治大學公共行政學系 博士（2017~2024）
+				國立政治大學公共行政學系 博士（2017.09~2024.05）
 			</div>
     
 			<div class="hero-contact">
@@ -264,14 +238,14 @@
 				<div>📧 <a href="mailto:serpent910@gmail.com">serpent910@gmail.com</a></div>
 				<div>📞 (02) 2230-8512 #3212</div>
 			</div>
-
+		</div>
     </header>
 
     <section id="research" class="section-compact">
         <h2>研究焦點 (Research Interests)</h2>
         <p>
-            以量化方法為工具，探討人工智慧在政府部門的應用、風險與法制規範。
-            特別關注在<strong>科技執法</strong>場域中，演算法如何影響行政裁量、專業判斷與人權保障。
+            以量化方法為工具，探討人工智慧在政府部門的具體應用、風險管控與法制規範。
+            當前研究聚焦在<strong>科技執法</strong>場域中，演算法如何影響行政裁量、專業判斷與人權保障。
         </p>
         
         <div class="tags">
@@ -295,17 +269,6 @@
             </div>
         </div>
 
-        <h3>🚀 審稿中論文 (Manuscripts Under Review)</h3>
-        <ul class="pub-list">
-            <li>
-                <span class="label-wip-gold">Under Review</span>
-                <strong>李洛維</strong>。從身分治理走向能力治理：資料治理成熟度對我國文官制度改革的啟示。
-            </li>
-            <li>
-                <span class="label-wip-gold">Under Review</span>
-                <strong>李洛維</strong>。使用者為何分享資料？數位金融服務中隱私與資料效用的決策權衡。
-            </li>
-        </ul>
     </section>
 
     <section id="honors" class="section-compact">
@@ -331,7 +294,7 @@
 			</li>
 			<li>
 				<strong>資料管理技術實踐與政策發展資訊服務案</strong>（數位發展部），
-				<strong>顧問，</strong>2025.07–2026.09。
+				<strong>顧問，</strong>2025.09–2026.11。
 			</li>
 		</ul>
 	</section>
@@ -341,7 +304,10 @@
         
         <h3>📝 期刊論文 (Journal Articles)</h3>
         <ul class="pub-list">
-            <li>
+            <li>    
+                <strong>李洛維</strong>（2026）。從身分治理走向能力治理：資料治理成熟度對我國文官制度改革的啟示。<strong>文官制度，XX</strong>（X），XX-XX。（已接受）
+			</li>
+			<li>
                 <span class="label-tssci">TSSCI</span>
                 <strong>李洛維</strong>、朱斌妤、曾憲立（2023）。推動政府資料治理的關鍵因素：內部利害關係人角度的因果模型。<strong>公共行政學報，64</strong>，35-77。
             </li>
@@ -395,32 +361,44 @@
         </ul>
     </section>
 
-    <section id="teaching" style="background-color: #f8f9fa; border-radius: 8px;" class="section-compact">
-        <h2>教學與實務 (Teaching & Practice)</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <div>
-                <h4>🏛️ 法律與人權課程</h4>
-                <p style="font-size:0.9rem; color:#666; margin-bottom:10px;">結合執法實務案例，探討公權力行使之邊界。</p>
-                <ul>
-                    <li>憲法與人權保障</li>
-                    <li>行政法</li>
-                    <li>人權公約與多元文化</li>
-                </ul>
-            </div>
-            <div>
-                <h4>🤖 科技與跨域專題</h4>
-                <p style="font-size:0.9rem; color:#666; margin-bottom:10px;">探討數位治理趨勢與科技執法倫理。</p>
-                <ul>
-                    <li>智慧治理與未來趨勢專題</li>
-                    <li>科技法跨界研究 (規劃中)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+	<section id="teaching" class="section-compact" style="background-color: #f8f9fa; border-radius: 8px;">
+		<h2>可開設課程 (Courses Available)</h2>
+
+		<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 20px;">
+        
+			<div>
+				<h4>📘 公共行政</h4>
+				<ul style="padding-left: 18px; line-height: 1.8;">
+					<li>智慧治理與未來趨勢專題</li>
+					<li>行政學</li>
+					<li>公共政策</li>
+				</ul>
+			</div>
+
+			<div>
+				<h4>📊 量化方法</h4>
+				<ul style="padding-left: 18px; line-height: 1.8;">
+					<li>量化研究法</li>
+					<li>應用統計學</li>
+					<li>多變量分析</li>
+				</ul>
+			</div>
+
+			<div>
+				<h4>⚖ 法律</h4>
+				<ul style="padding-left: 18px; line-height: 1.8;">
+					<li>憲法</li>
+					<li>行政法</li>
+				</ul>
+			</div>
+
+    </div>
+</section>
+
 
     <footer>
-        <p>&copy; 2025 李洛維 (Luo-Wei Lee). All Rights Reserved.</p>
-        <p style="font-size:0.8rem; color: #999;">Updated: 2025.11</p>
+        <p>&copy; 2026 李洛維 (Luo-Wei Lee). All Rights Reserved.</p>
+        <p style="font-size:0.8rem; color: #999;">Updated: 2026.02</p>
     </footer>
 
 </body>
