@@ -3,402 +3,953 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李洛維 (Luo-Wei Lee) | Ph.D. | 智慧政府與科技法制</title>
+    <title>李洛維 Luo-Wei Lee, Ph.D. | 智慧政府・資料治理・科技法制</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* --- 基礎設定 --- */
+        /* ── CSS 變數 ── */
         :root {
-            --primary-color: #003366; /* 穩重的學術深藍 */
-            --secondary-color: #4a6fa5; 
-            --accent-color: #d4af37; /* 金色 */
-            --silver-color: #A9A9A9; /* 銀色 */
-            --text-color: #333;
-            --bg-light: #f8f9fa;
-            --white: #ffffff;
+            --ink:        #1a1a2e;
+            --ink-mid:    #2d2d4a;
+            --ink-light:  #5a5a78;
+            --rule:       #d4c5a9;
+            --parchment:  #faf8f3;
+            --cream:      #f2ede3;
+            --gold:       #b8963e;
+            --gold-light: #d4af65;
+            --gold-pale:  #f5eed8;
+            --blue-deep:  #1c3557;
+            --blue-mid:   #2e5085;
+            --blue-pale:  #e8eef6;
+            --white:      #ffffff;
+            --serif-display: 'EB Garamond', 'Noto Serif TC', serif;
+            --serif-body:    'Noto Serif TC', Georgia, serif;
+            --mono:          'JetBrains Mono', Consolas, monospace;
+            --transition:    0.28s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
         body {
-            font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft JhengHei", sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
+            font-family: var(--serif-body);
+            background-color: var(--parchment);
+            color: var(--ink);
+            line-height: 1.75;
+            overflow-x: hidden;
         }
 
-        a { color: var(--primary-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        /* ── 背景紋理 ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(ellipse at 20% 20%, rgba(28, 53, 87, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(184, 150, 62, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-        /* --- 導覽列 --- */
+        /* ── 導覽列 ── */
         nav {
-            background: var(--white);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
+            background: rgba(250, 248, 243, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--rule);
+            padding: 0 clamp(20px, 5vw, 80px);
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            height: 62px;
         }
-        .nav-brand { font-weight: bold; font-size: 1.2rem; color: var(--primary-color); }
-        .nav-links a { margin-left: 20px; font-size: 0.95rem; color: #555; }
-        .nav-links a:hover { color: var(--primary-color); }
 
-        /* --- 區塊通用設定 --- */
-        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; scroll-margin-top: 80px;}
-        h2 { 
-            color: var(--primary-color); 
-            border-bottom: 3px solid var(--accent-color); 
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 30px;
+        .nav-brand {
+            font-family: var(--serif-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--blue-deep);
+            letter-spacing: 0.01em;
         }
-        h3 { margin-top: 35px; color: #444; border-left: 4px solid var(--secondary-color); padding-left: 12px; font-size: 1.25rem; }
-        h4 { margin-top: 20px; color: #555; font-weight: bold; }
 
-        /* --- 首頁 (Hero Section) --- */
-        .hero {
+        .nav-brand span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 50px;
-            background: linear-gradient(135deg, var(--bg-light) 0%, #e9ecef 100%);
-            padding: 45px 20px 35px;
-            border-bottom: 1px solid #e0e0e0;
+            gap: 32px;
         }
-		
-        .profile-img {
-            width: 270px;
-            height: 270px;
-            border-radius: 50%; /* 圓形裁切 */
-            object-fit: cover; /* 確保照片填滿不變形 */
-            object-position: center top; /* 重點對齊中上方 (臉部) */
-            border: 6px solid var(--white);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            background-color: #ccc;
+
+        .nav-links a {
+            font-family: var(--serif-body);
+            font-size: 0.875rem;
+            color: var(--ink-light);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--blue-deep); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            background: linear-gradient(160deg, var(--blue-deep) 0%, #0f2240 60%, #1a1a2e 100%);
+            color: var(--white);
+            padding: clamp(50px, 8vw, 100px) clamp(20px, 6vw, 100px);
+            overflow: hidden;
+        }
+
+        /* 裝飾線條 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(184,150,62,0.06) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* 右側幾何裝飾 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 30px; right: 50px;
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(184,150,62,0.18);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: clamp(30px, 5vw, 70px);
+            align-items: center;
+        }
+
+        /* 頭像 */
+        .avatar-frame {
+            position: relative;
             flex-shrink: 0;
         }
-        /* --- Hero 字級黃金比例校準 --- */
-		.hero-text h1 {
-			font-size: 2.3rem;
-			margin-bottom: 6px;
-		}
-		.hero-text h2 {
-			font-size: 1.25rem;
-			margin-bottom: 12px;
-		}
-		.hero-education {
-			font-size: 0.95rem;
-			color: #555;
-			margin-bottom: 14px;
-		}
-		.hero-contact {
-		font-size: 0.85rem;
-		color: #666;
-		line-height: 1.6;
-		margin-bottom: 8px;
-		display: flex;
-		gap: 6px;
-		flex-direction: column;
-		}
-.hero-contact div { display: flex; align-items: center; }
 
-        
-        /* --- 標籤與工具 --- */
-        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .tag { 
-            background: var(--white); 
-            border: 1px solid #ddd;
-            color: var(--primary-color);
-            padding: 6px 16px; 
-            border-radius: 25px; 
-            font-size: 0.9rem; 
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: all 0.2s;
-        }
-        .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-
-        .tool-badge {
-            background-color: #333;
-            color: #fff;
-            padding: 3px 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-family: Consolas, Monaco, monospace;
-            margin-right: 6px;
-            display: inline-block;
-            margin-bottom: 6px;
+        .avatar-frame::before {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px;
+            width: calc(100% + 16px);
+            height: calc(100% + 16px);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0.5;
         }
 
-        /* --- 列表樣式 --- */
-        ul.pub-list { list-style-type: none; padding: 0; }
-        ul.pub-list li { 
-            margin-bottom: 20px; 
-            padding-left: 25px; 
-            position: relative; 
+        .avatar-frame::after {
+            content: '';
+            position: absolute;
+            top: -16px; left: -16px;
+            width: calc(100% + 32px);
+            height: calc(100% + 32px);
+            border: 1px solid rgba(184,150,62,0.2);
+            border-radius: 50%;
+        }
+
+        .profile-img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 4px solid rgba(255,255,255,0.15);
+            display: block;
+            background: var(--blue-mid);
+        }
+
+        /* Hero 文字 */
+        .hero-name {
+            font-family: var(--serif-display);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+        }
+
+        .hero-name-en {
+            font-family: var(--serif-display);
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-rule {
+            width: 48px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin-bottom: 20px;
+        }
+
+        .hero-position {
             font-size: 0.95rem;
-            text-align: justify;
-            border-bottom: 1px dashed #eee;
-            padding-bottom: 10px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
         }
-        ul.pub-list li::before {
-            content: "➤";
-            color: var(--primary-color);
-            font-weight: bold;
+
+        .hero-position strong {
+            color: rgba(255,255,255,0.95);
+            font-weight: 600;
+        }
+
+        .hero-edu {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 24px;
+        }
+
+        .hero-contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hero-contact-item {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-contact-item svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            opacity: 0.7;
+            fill: var(--gold-light);
+        }
+
+        .hero-contact-item a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .hero-contact-item a:hover { color: var(--gold-light); }
+
+        /* ── 橫幅徽章 ── */
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(184,150,62,0.3);
+            color: rgba(255,255,255,0.75);
+            font-size: 0.78rem;
+            padding: 4px 12px;
+            border-radius: 2px;
+            letter-spacing: 0.03em;
+        }
+
+        .badge .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        /* ── 區塊容器 ── */
+        .section-wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 60px clamp(20px, 5vw, 40px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-wrap + .section-wrap {
+            border-top: 1px solid var(--rule);
+        }
+
+        /* ── 標題系統 ── */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: var(--serif-display);
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--blue-deep);
+            letter-spacing: -0.01em;
+        }
+
+        .section-title-en {
+            font-family: var(--serif-display);
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        .section-rule {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--rule), transparent);
+        }
+
+        /* ── 研究標籤 ── */
+        .research-intro {
+            font-size: 1.0rem;
+            color: var(--ink-mid);
+            line-height: 1.85;
+            max-width: 720px;
+            margin-bottom: 32px;
+        }
+
+        .research-intro strong { color: var(--blue-deep); font-weight: 600; }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .tag {
+            font-family: var(--serif-body);
+            font-size: 0.875rem;
+            color: var(--blue-deep);
+            background: var(--blue-pale);
+            border: 1px solid rgba(46, 80, 133, 0.15);
+            padding: 5px 16px;
+            border-radius: 2px;
+            transition: all var(--transition);
+            cursor: default;
+        }
+
+        .tag:hover {
+            background: var(--blue-deep);
+            color: var(--white);
+            border-color: var(--blue-deep);
+            transform: translateY(-1px);
+        }
+
+        /* ── 工具列 ── */
+        .tools-box {
+            background: var(--cream);
+            border: 1px solid var(--rule);
+            border-left: 3px solid var(--gold);
+            padding: 18px 22px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tools-box-label {
+            font-size: 0.8rem;
+            font-family: var(--mono);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+            margin-bottom: 12px;
+        }
+
+        .tool-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            background: var(--ink);
+            color: rgba(255,255,255,0.85);
+            padding: 3px 12px;
+            border-radius: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── 榮譽列表 ── */
+        .honor-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .honor-item {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 16px;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+
+        .honor-item:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            transform: translateX(3px);
+        }
+
+        .honor-year {
+            font-family: var(--serif-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-align: center;
+            line-height: 1;
+        }
+
+        .honor-medal {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .honor-text { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.5; }
+        .honor-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 2px;
+            margin-left: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── 委託計畫 ── */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-item {
+            padding: 18px 22px;
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            align-items: center;
+            transition: box-shadow var(--transition);
+        }
+
+        .project-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+        .project-name { font-size: 0.95rem; font-weight: 600; color: var(--blue-deep); margin-bottom: 4px; }
+        .project-meta { font-size: 0.85rem; color: var(--ink-light); }
+        .project-role {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            background: var(--blue-pale);
+            color: var(--blue-mid);
+            padding: 3px 10px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        /* ── 著作 ── */
+        .pub-category {
+            margin-bottom: 44px;
+        }
+
+        .pub-category-title {
+            font-family: var(--serif-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--blue-deep);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pub-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .pub-item {
+            padding: 16px 20px 16px 44px;
+            position: relative;
+            font-size: 0.925rem;
+            line-height: 1.7;
+            color: var(--ink-mid);
+            text-align: justify;
+            border-radius: 3px;
+            transition: background var(--transition);
+        }
+
+        .pub-item:hover { background: var(--cream); }
+
+        .pub-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 24px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .pub-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 0;
+            height: 1px;
+            background: var(--rule);
+            opacity: 0.5;
+        }
+
+        /* 著作標籤 */
+        .label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-family: var(--mono);
+            font-weight: 500;
+            padding: 1px 7px;
+            border-radius: 2px;
+            vertical-align: middle;
+            margin-right: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .label-tssci  { background: var(--blue-deep); color: #fff; }
+        .label-accept { background: var(--gold);      color: #fff; }
+        .label-wip    { background: var(--ink-light); color: #fff; }
+        .label-ssci   { background: #1a6b3c;          color: #fff; }
+
+        /* ── 教學 ── */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .teaching-card {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            padding: 22px 20px;
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+
+        .teaching-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .teaching-card-title {
+            font-family: var(--serif-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--blue-deep);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+        }
+
+        .teaching-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .teaching-card ul li {
+            font-size: 0.9rem;
+            color: var(--ink-mid);
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .teaching-card ul li::before {
+            content: '—';
             position: absolute;
             left: 0;
-            font-size: 0.8rem;
-            top: 5px;
-        }
-        ul.pub-list li:last-child { border-bottom: none; }
-
-        /* --- 狀態標籤 (WIP) --- */
-        .label-wip-gold {
-            background-color: var(--accent-color); 
-            color: #fff;
-            padding: 2px 8px; 
-            font-size: 0.75rem; 
-            border-radius: 3px; 
-            margin-right: 8px; 
-            vertical-align: text-bottom;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            font-weight: 300;
         }
 
-        .label-tssci { 
-            background-color: #003366; color: #fff; 
-            padding: 1px 6px; font-size: 0.75rem; border-radius: 3px; margin-right: 5px;
+        /* ── Footer ── */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 36px 20px;
+            font-size: 0.83rem;
+            font-family: var(--serif-body);
+            letter-spacing: 0.04em;
         }
 
-        /* --- 頁尾 --- */
-        footer { text-align: center; padding: 40px 0; color: #777; font-size: 0.9rem; background: #f1f1f1; margin-top: 80px; }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        footer a:hover { color: var(--gold-light); }
 
-        /* --- 手機版響應式 --- */
-		@media (max-width: 768px) {
-		.hero-contact div { justify-content: center; }
-		}
-        
-		/* 收斂四大主區塊之間的距離（Research / Honors / Publications / Teaching） */
-		.section-compact {
-			padding-top: 28px;
-			padding-bottom: 28px;
-		}
+        /* ── 動畫 ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-		/* 把每個 section 標題底下的空白縮小 */
-		.section-compact > h2 {
-			margin-bottom: 18px;
-		}
+        .hero-inner > * {
+            animation: fadeInUp 0.7s ease both;
+        }
 
-		/* 相鄰 section 的距離：只保留一個「段落」的節奏，不要像簡報 */
-		.section-compact + .section-compact {
-			margin-top: -10px; /* 這行是關鍵：直接吃掉一部分上下 padding 的重疊感 */
-		}
-		
-		/* --- Teaching 灰色區塊收斂 --- */
-		#teaching {
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
+        .hero-inner > *:nth-child(2) { animation-delay: 0.1s; }
 
-		#teaching h2 {
-			margin-bottom: 5px;
-		}
-
-		#teaching > div {
-			margin-top: 5px !important;
-		}
-
-   </style>
+        /* ── 響應式 ── */
+        @media (max-width: 700px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .avatar-frame { margin: 0 auto; }
+            .hero-rule { margin: 0 auto 20px; }
+            .hero-badges { justify-content: center; }
+            .hero-contact-item { justify-content: center; }
+            nav { padding: 0 16px; }
+            .nav-links { gap: 16px; }
+            .project-item { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
+    <!-- ── 導覽列 ── -->
     <nav>
-        <div class="nav-brand">李洛維 (Luo-Wei Lee) | Ph.D.</div>
+        <div class="nav-brand">李洛維 <span>Luo-Wei Lee</span>, Ph.D.</div>
         <div class="nav-links">
-            <a href="#about">關於我</a>
-            <a href="#research">研究領域</a>
-            <a href="#publications">學術著作</a>
-            <a href="#teaching">教學課程</a>
+            <a href="#research">研究</a>
+            <a href="#honors">榮譽</a>
+            <a href="#publications">著作</a>
+            <a href="#teaching">教學</a>
         </div>
     </nav>
 
+    <!-- ── Hero ── -->
     <header class="hero" id="about">
-        <img src="profile.jpg" alt="李洛維博士演講照片" class="profile-img">
-        
-        <div class="hero-text">
-			<h1>李洛維</h1>
+        <div class="hero-inner">
+            <div class="avatar-frame">
+                <img src="profile.jpg" alt="李洛維博士" class="profile-img">
+            </div>
 
-			<h2>臺灣警察專科學校 海洋巡防科 助理教授（2025.08~）</h2>
+            <div class="hero-text">
+                <div class="hero-name">李洛維</div>
+                <div class="hero-name-en">Luo-Wei Lee, Ph.D.</div>
+                <div class="hero-rule"></div>
 
-			<div class="hero-education">
-				國立政治大學公共行政學系 博士（2017.09~2024.05）
-			</div>
-    
-			<div class="hero-contact">
-				<div>📍 116 台北市文山區興隆路三段153號</div>
-				<div>📧 <a href="mailto:serpent910@gmail.com">serpent910@gmail.com</a></div>
-				<div>📞 (02) 2230-8512 #3212</div>
-			</div>
-		</div>
+                <div class="hero-position">
+                    <strong>臺灣警察專科學校</strong>
+                    <span>海洋巡防科 &middot; 助理教授</span>
+                </div>
+                <div class="hero-edu">國立政治大學 公共行政學系 博士（2017–2024）</div>
+
+                <div class="hero-contact-grid">
+                    <div class="hero-contact-item">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+                        116 台北市文山區興隆路三段153號
+                    </div>
+                    <div class="hero-contact-item">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <a href="mailto:serpent910@gmail.com">serpent910@gmail.com</a>
+                    </div>
+                    <div class="hero-contact-item">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.58 1 1 0 01-.24 1.01l-2.21 2.2z"/></svg>
+                        (02) 2230-8512 #3212
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
     </header>
 
-    <section id="research" class="section-compact">
-        <h2>研究焦點 (Research Interests)</h2>
-        <p>
-            以量化方法為工具，探討人工智慧在政府部門的具體應用、風險管控與法制規範。
-            當前研究聚焦在<strong>科技執法</strong>場域中，演算法如何影響行政裁量、專業判斷與人權保障。
+    <!-- ── 研究焦點 ── -->
+    <div class="section-wrap" id="research">
+        <div class="section-header">
+            <h2 class="section-title">研究焦點</h2>
+            <span class="section-title-en">Research Interests</span>
+            <div class="section-rule"></div>
+        </div>
+
+        <p class="research-intro">
+            以量化方法為核心工具，探討<strong>人工智慧在政府部門</strong>的具體應用、風險管控與法制規範。
+            當前研究聚焦於<strong>科技執法</strong>場域，分析演算法如何影響行政裁量、專業判斷與人權保障，
+            並致力建構具本土脈絡敏感度的 AI 執法治理理論框架。
         </p>
-        
+
         <div class="tags">
             <span class="tag">#生成式AI與智慧政府</span>
             <span class="tag">#演算法偏誤與課責</span>
             <span class="tag">#科技法與數位人權</span>
-            <span class="tag">#資料治理 (Data Governance)</span>
-            <span class="tag">#循證決策 (Evidence-Based Policy)</span>
+            <span class="tag">#資料治理 Data Governance</span>
+            <span class="tag">#循證決策 Evidence-Based Policy</span>
             <span class="tag">#社會科學量化研究</span>
         </div>
 
-        <div style="margin-top: 30px; background: #f4f6f9; padding: 15px; border-radius: 8px;">
-            <strong style="color:#444;">🛠️ 數據分析與研究工具：</strong>
-            <div style="margin-top:10px;">
-                <span class="tool-badge">Python</span>
-				<span class="tool-badge">R</span>
-                <span class="tool-badge">SmartPLS</span>
-                <span class="tool-badge">AMOS</span>
-                <span class="tool-badge">SPSS</span>
-                <span class="tool-badge">JASP</span>
+        <div class="tools-box">
+            <div class="tools-box-label">// Research Tools & Methods</div>
+            <div class="tool-chips">
+                <span class="chip">Python</span>
+                <span class="chip">R</span>
+                <span class="chip">SmartPLS</span>
+                <span class="chip">AMOS</span>
+                <span class="chip">SPSS</span>
+                <span class="chip">JASP</span>
+                <span class="chip">SEM</span>
+                <span class="chip">GIS</span>
+                <span class="chip">Mixed Methods</span>
             </div>
         </div>
-
-    </section>
-
-    <section id="honors" class="section-compact">
-        <h2>個人榮譽 (Honors & Awards)</h2>
-    
-        <ul class="pub-list">
-            <li>
-                <strong>2025</strong>．第二十屆 TASPAA 最佳博士學位論文獎（<strong>特優</strong>）
-            </li>
-            <li>
-                <strong>2025</strong>．國立政治大學 113 學年度博士學位論文獎
-            </li>
-        </ul>
-    </section>
-	
-	<section id="projects" class="section-compact">
-		<h2>委託研究計畫 (Commissioned Research Projects)</h2>
-
-		<ul class="pub-list">
-			<li>
-				<strong>六都數位政策調查</strong>（台灣數位平台經濟協會），
-				<strong>協同主持人，</strong>2025.08–2026.03。
-			</li>
-			<li>
-				<strong>資料管理技術實踐與政策發展資訊服務案</strong>（數位發展部），
-				<strong>顧問，</strong>2025.09–2026.11。
-			</li>
-		</ul>
-	</section>
-
-    <section id="publications" class="section-compact">
-        <h2>學術著作 (Publications)</h2>
-        
-        <h3>📝 期刊論文 (Journal Articles)</h3>
-        <ul class="pub-list">
-            <li>    
-                <strong>李洛維</strong>（2026）。從身分治理走向能力治理：資料治理成熟度對我國文官制度改革的啟示。<strong>文官制度，XX</strong>（X），XX-XX。（已接受）
-			</li>
-			<li>
-                <span class="label-tssci">TSSCI</span>
-                <strong>李洛維</strong>、朱斌妤、曾憲立（2023）。推動政府資料治理的關鍵因素：內部利害關係人角度的因果模型。<strong>公共行政學報，64</strong>，35-77。
-            </li>
-            <li>
-                <strong>李洛維</strong>、朱斌妤（2021）。推動服務型智慧政府的核心引擎－資料治理的挑戰與對策。<strong>文官制度，13</strong>（2），115-151。
-            </li>
-        </ul>
-
-        <h3>🎤 研討會論文 (Conference Papers)</h3>
-        <ul class="pub-list">
-            <li>
-                <strong>李洛維</strong>（2025）。科層失靈或能力崛起？從資料治理成熟度診斷我國文官制度的轉型挑戰。《文官制度》跨世代學術交流圓桌論壇，台北。
-            </li>
-            <li>
-                吳冠杰、<strong>李洛維</strong>（2024）。警察「警察敘事能力與溝通」課程學習成效評估-以警專生學習執行治安及交通勤務為例。113年道路交通管理實務與學術研討會，台北。
-            </li>
-            <li>
-                王旭昇、沈明昌、<strong>李洛維</strong>（2023）。警察敘事能力與溝通教學成效之比較研究。112年臺灣警察專科學校精進校務發展研究計畫發表會，台北。
-            </li>
-            <li>
-                王旭昇、沈明昌、<strong>李洛維</strong>（2022）。警察敘事能力與溝通教學成效研究。111年臺灣警察專科學校精進校務發展研究計畫發表會，台北。
-            </li>
-            <li>
-                廖興中、黃婉玲、<strong>李洛維</strong>、朱斌妤（2019）。臺灣各鄉鎮數位發展分類研究：集群分析與潛在全象分析的啟發。2019年臺灣公共行政與公共事務系所聯合會（TASPAA）年會，台中。
-            </li>
-            <li>
-                蕭乃沂、李蔡彥、楊子申、<strong>李洛維</strong>、許鈺昕（2018）。新時代文官數位治理核心能力的界定與培訓。2018年臺灣公共行政與公共事務系所聯合會（TASPAA）年會，台北。
-            </li>
-            <li>
-                <strong>Lee, L.W.</strong>, and Chu, P.Y. (2018). A User Approach to Open Government Data Impact Assessment. <em>The 18th European Conference on eGovernment</em>, University of Santiago de Compostela.
-            </li>
-            <li>
-                <strong>Lee, L.W.</strong>, and Tseng, H.L. (2018). Citizen Participation and e-Government usage Satisfaction in Taiwan. <em>The 18th European Conference on eGovernment</em>, University of Santiago de Compostela.
-            </li>
-        </ul>
-
-        <h3>📖 專書篇章 (Book Chapters)</h3>
-        <ul class="pub-list">
-            <li>
-                朱斌妤、<strong>李洛維</strong>（2023）。何謂資料治理？載於朱斌妤等編，《政府資料治理：理論建構與個案演練》（頁5-28）。五南。
-            </li>
-            <li>
-                朱斌妤、<strong>李洛維</strong>（2020）。看不見的幕後英雄：淺談資料治理。載於陳敦源等編，《政府數位轉型：一本必讀的入門書》（頁155-164）。五南。
-            </li>
-        </ul>
-
-        <h3>📰 其他發表 (Other Publications)</h3>
-        <ul class="pub-list">
-            <li><strong>李洛維</strong>、朱斌妤（2021）。我究竟同意了什麼？淺談智慧政府下MyData面臨的困難與挑戰。《T&D飛訊》，287，1-36。</li>
-            <li><strong>李洛維</strong>、朱斌妤（2019）。公部門資料治理的發展與挑戰。《T&D飛訊》，253，1-26。</li>
-        </ul>
-    </section>
-
-	<section id="teaching" class="section-compact" style="background-color: #f8f9fa; border-radius: 8px;">
-		<h2>可開設課程 (Courses Available)</h2>
-
-		<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 20px;">
-        
-			<div>
-				<h4>📘 公共行政</h4>
-				<ul style="padding-left: 18px; line-height: 1.8;">
-					<li>智慧治理與未來趨勢專題</li>
-					<li>行政學</li>
-					<li>公共政策</li>
-				</ul>
-			</div>
-
-			<div>
-				<h4>📊 量化方法</h4>
-				<ul style="padding-left: 18px; line-height: 1.8;">
-					<li>量化研究法</li>
-					<li>應用統計學</li>
-					<li>多變量分析</li>
-				</ul>
-			</div>
-
-			<div>
-				<h4>⚖ 法律</h4>
-				<ul style="padding-left: 18px; line-height: 1.8;">
-					<li>憲法</li>
-					<li>行政法</li>
-				</ul>
-			</div>
-
     </div>
-</section>
 
+    <!-- ── 榮譽 ── -->
+    <div class="section-wrap" id="honors">
+        <div class="section-header">
+            <h2 class="section-title">個人榮譽</h2>
+            <span class="section-title-en">Honors & Awards</span>
+            <div class="section-rule"></div>
+        </div>
 
+        <div class="honor-list">
+            <div class="honor-item">
+                <div>
+                    <div class="honor-year">2025</div>
+                    <div class="honor-medal">★</div>
+                </div>
+                <div class="honor-text">
+                    第二十屆 TASPAA 最佳博士學位論文獎
+                    <span class="honor-badge">特優</span>
+                </div>
+            </div>
+            <div class="honor-item">
+                <div>
+                    <div class="honor-year">2025</div>
+                </div>
+                <div class="honor-text">
+                    國立政治大學 113 學年度博士學位論文獎
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 委託計畫 ── -->
+    <div class="section-wrap" id="projects">
+        <div class="section-header">
+            <h2 class="section-title">委託研究計畫</h2>
+            <span class="section-title-en">Commissioned Research</span>
+            <div class="section-rule"></div>
+        </div>
+
+        <div class="project-list">
+            <div class="project-item">
+                <div>
+                    <div class="project-name">六都數位政策調查</div>
+                    <div class="project-meta">台灣數位平台經濟協會 &ensp;｜&ensp; 2025.08 – 2026.03</div>
+                </div>
+                <span class="project-role">協同主持人</span>
+            </div>
+            <div class="project-item">
+                <div>
+                    <div class="project-name">資料管理技術實踐與政策發展資訊服務案</div>
+                    <div class="project-meta">數位發展部 &ensp;｜&ensp; 2025.09 – 2026.11</div>
+                </div>
+                <span class="project-role">顧問</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 學術著作 ── -->
+    <div class="section-wrap" id="publications">
+        <div class="section-header">
+            <h2 class="section-title">學術著作</h2>
+            <span class="section-title-en">Publications</span>
+            <div class="section-rule"></div>
+        </div>
+
+        <!-- 期刊論文 -->
+        <div class="pub-category">
+            <div class="pub-category-title">
+                <span>📝</span> 期刊論文 &nbsp;<em style="font-size:0.8rem; font-weight:400; color:var(--ink-light)">Journal Articles</em>
+            </div>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <span class="label label-accept">已接受</span>
+                    <strong>李洛維</strong>（2026）。從身分治理走向能力治理：資料治理成熟度對我國文官制度改革的啟示。<em>文官制度，XX</em>（X），XX–XX。
+                </li>
+                <li class="pub-item">
+                    <span class="label label-tssci">TSSCI</span>
+                    <strong>李洛維</strong>、朱斌妤、曾憲立（2023）。推動政府資料治理的關鍵因素：內部利害關係人角度的因果模型。<em>公共行政學報，64</em>，35–77。
+                </li>
+                <li class="pub-item">
+                    <strong>李洛維</strong>、朱斌妤（2021）。推動服務型智慧政府的核心引擎－資料治理的挑戰與對策。<em>文官制度，13</em>（2），115–151。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 研討會論文 -->
+        <div class="pub-category">
+            <div class="pub-category-title">
+                <span>🎤</span> 研討會論文 &nbsp;<em style="font-size:0.8rem; font-weight:400; color:var(--ink-light)">Conference Papers</em>
+            </div>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <strong>李洛維</strong>（2025）。科層失靈或能力崛起？從資料治理成熟度診斷我國文官制度的轉型挑戰。《文官制度》跨世代學術交流圓桌論壇，台北。
+                </li>
+                <li class="pub-item">
+                    吳冠杰、<strong>李洛維</strong>（2024）。警察「警察敘事能力與溝通」課程學習成效評估—以警專生學習執行治安及交通勤務為例。113年道路交通管理實務與學術研討會，台北。
+                </li>
+                <li class="pub-item">
+                    王旭昇、沈明昌、<strong>李洛維</strong>（2023）。警察敘事能力與溝通教學成效之比較研究。112年臺灣警察專科學校精進校務發展研究計畫發表會，台北。
+                </li>
+                <li class="pub-item">
+                    王旭昇、沈明昌、<strong>李洛維</strong>（2022）。警察敘事能力與溝通教學成效研究。111年臺灣警察專科學校精進校務發展研究計畫發表會，台北。
+                </li>
+                <li class="pub-item">
+                    廖興中、黃婉玲、<strong>李洛維</strong>、朱斌妤（2019）。臺灣各鄉鎮數位發展分類研究：集群分析與潛在全象分析的啟發。2019年 TASPAA 年會，台中。
+                </li>
+                <li class="pub-item">
+                    蕭乃沂、李蔡彥、楊子申、<strong>李洛維</strong>、許鈺昕（2018）。新時代文官數位治理核心能力的界定與培訓。2018年 TASPAA 年會，台北。
+                </li>
+                <li class="pub-item">
+                    <strong>Lee, L.W.</strong>, and Chu, P.Y. (2018). A User Approach to Open Government Data Impact Assessment. <em>The 18th European Conference on eGovernment</em>, University of Santiago de Compostela.
+                </li>
+                <li class="pub-item">
+                    <strong>Lee, L.W.</strong>, and Tseng, H.L. (2018). Citizen Participation and e-Government Usage Satisfaction in Taiwan. <em>The 18th European Conference on eGovernment</em>, University of Santiago de Compostela.
+                </li>
+            </ul>
+        </div>
+
+        <!-- 專書篇章 -->
+        <div class="pub-category">
+            <div class="pub-category-title">
+                <span>📖</span> 專書篇章 &nbsp;<em style="font-size:0.8rem; font-weight:400; color:var(--ink-light)">Book Chapters</em>
+            </div>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    朱斌妤、<strong>李洛維</strong>（2023）。何謂資料治理？載於朱斌妤等編，《政府資料治理：理論建構與個案演練》（頁5–28）。五南。
+                </li>
+                <li class="pub-item">
+                    朱斌妤、<strong>李洛維</strong>（2020）。看不見的幕後英雄：淺談資料治理。載於陳敦源等編，《政府數位轉型：一本必讀的入門書》（頁155–164）。五南。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 其他發表 -->
+        <div class="pub-category">
+            <div class="pub-category-title">
+                <span>📰</span> 其他發表 &nbsp;<em style="font-size:0.8rem; font-weight:400; color:var(--ink-light)">Other Publications</em>
+            </div>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <strong>李洛維</strong>、朱斌妤（2021）。我究竟同意了什麼？淺談智慧政府下 MyData 面臨的困難與挑戰。《T&D 飛訊》，287，1–36。
+                </li>
+                <li class="pub-item">
+                    <strong>李洛維</strong>、朱斌妤（2019）。公部門資料治理的發展與挑戰。《T&D 飛訊》，253，1–26。
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ── 教學 ── -->
+    <div class="section-wrap" id="teaching" style="background: var(--cream); max-width:100%; padding-left: 0; padding-right: 0;">
+        <div style="max-width:1080px; margin:0 auto; padding: 60px clamp(20px, 5vw, 40px);">
+            <div class="section-header">
+                <h2 class="section-title">可開設課程</h2>
+                <span class="section-title-en">Courses Available</span>
+                <div class="section-rule"></div>
+            </div>
+
+            <div class="teaching-grid">
+                <div class="teaching-card">
+                    <div class="teaching-card-title">📘 公共行政</div>
+                    <ul>
+                        <li>智慧治理與未來趨勢專題</li>
+                        <li>行政學</li>
+                        <li>公共政策</li>
+                    </ul>
+                </div>
+                <div class="teaching-card">
+                    <div class="teaching-card-title">📊 量化方法</div>
+                    <ul>
+                        <li>量化研究法</li>
+                        <li>應用統計學</li>
+                        <li>多變量分析</li>
+                    </ul>
+                </div>
+                <div class="teaching-card">
+                    <div class="teaching-card-title">⚖️ 法律</div>
+                    <ul>
+                        <li>憲法</li>
+                        <li>行政法</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Footer ── -->
     <footer>
-        <p>&copy; 2026 李洛維 (Luo-Wei Lee). All Rights Reserved.</p>
-        <p style="font-size:0.8rem; color: #999;">Updated: 2026.02</p>
+        <p>&copy; 2026 李洛維 Luo-Wei Lee, Ph.D. &ensp;·&ensp; 臺灣警察專科學校</p>
+        <p style="margin-top: 6px; font-size:0.78rem; opacity:0.6;">Updated: February 2026</p>
     </footer>
 
 </body>
