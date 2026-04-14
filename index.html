@@ -242,9 +242,9 @@
         }
 
         .hero-contact-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 24px;
         }
 
         .hero-contact-item {
@@ -723,20 +723,6 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 2rem;">
-                    <a href="cv.pdf" target="_blank" rel="noopener"
-                       style="display: inline-flex; align-items: center; gap: 8px;
-                              padding: 10px 22px; border: 1px solid rgba(184,150,62,0.5);
-                              border-radius: 3px; color: var(--gold-light);
-                              font-family: var(--serif-body); font-size: 0.88rem;
-                              text-decoration: none; letter-spacing: 0.04em;
-                              transition: all 0.28s ease;"
-                       onmouseover="this.style.background='rgba(184,150,62,0.12)'; this.style.borderColor='rgba(184,150,62,0.8)'"
-                       onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(184,150,62,0.5)'">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/></svg>
-                        下載 CV
-                    </a>
-                </div>
 
             </div>
         </div>
