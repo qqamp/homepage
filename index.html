@@ -581,6 +581,122 @@
         .label-writing   { background: var(--ink-light); color: #fff; }
         .label-amendment { background: #8a5a3a;          color: #fff; }
 
+        /* ── 實作作品（Featured Project） ── */
+        .impl-project {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+            padding: 28px 32px;
+            background: linear-gradient(135deg, var(--blue-deep) 0%, #0f2240 60%, #1a1a2e 100%);
+            border: 1px solid rgba(184, 150, 62, 0.3);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--white);
+            transition: box-shadow var(--transition), transform var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impl-project::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 240px; height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(184,150,62,0.10) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .impl-project:hover {
+            box-shadow: 0 8px 28px rgba(28, 53, 87, 0.28);
+            transform: translateY(-2px);
+        }
+
+        .impl-project-eyebrow { margin-bottom: 10px; }
+
+        .impl-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(184, 150, 62, 0.18);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            font-family: var(--mono);
+            padding: 3px 12px;
+            border-radius: 2px;
+            letter-spacing: 0.08em;
+        }
+
+        .impl-project-name {
+            font-family: var(--serif-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .impl-project-en {
+            color: var(--gold-light);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.05rem;
+            margin-left: 8px;
+        }
+
+        .impl-project-tagline {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.78);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .impl-project-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .impl-feature {
+            font-size: 0.78rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(184,150,62,0.25);
+            color: rgba(255,255,255,0.82);
+            padding: 3px 10px;
+            border-radius: 2px;
+            letter-spacing: 0.02em;
+        }
+
+        .impl-cta {
+            font-family: var(--serif-display);
+            font-size: 0.95rem;
+            color: var(--gold-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+            transition: all var(--transition);
+            white-space: nowrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .impl-project:hover .impl-cta {
+            background: var(--gold);
+            color: var(--ink);
+        }
+
+        @media (max-width: 700px) {
+            .impl-project {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 22px;
+            }
+            .impl-cta { justify-content: center; }
+        }
+
         /* ── 教學 ── */
         .teaching-grid {
             display: grid;
@@ -770,7 +886,37 @@
         </div>
     </div>
 
-    <!-- ── 榮譽 ── -->
+<!-- ── 實作作品 ── -->
+    <div class="section-wrap" id="featured-project">
+        <div class="section-header">
+            <h2 class="section-title">實作作品</h2>
+            <span class="section-title-en">Featured Project</span>
+            <div class="section-rule"></div>
+        </div>
+
+        <a class="impl-project" href="https://qqamp.github.io/duoduorun/" target="_blank" rel="noopener">
+            <div>
+                <div class="impl-project-eyebrow">
+                    <span class="impl-badge">AI-BUILT · 2026</span>
+                </div>
+                <div class="impl-project-name">
+                    多多快跑<span class="impl-project-en">DuoDuoRun</span>
+                </div>
+                <div class="impl-project-tagline">
+                    為臺灣社會科學師生量身打造的純前端統計分析工具──結合生成式 AI 開發、社科研究方法與隱私保護設計。
+                </div>
+                <div class="impl-project-features">
+                    <span class="impl-feature">14 種統計方法</span>
+                    <span class="impl-feature">對齊 SPSS / JASP</span>
+                    <span class="impl-feature">本地運算・零上傳</span>
+                    <span class="impl-feature">中／英 APA 敘述</span>
+                </div>
+            </div>
+            <span class="impl-cta">開啟工具 →</span>
+        </a>
+    </div>
+
+        <!-- ── 榮譽 ── -->
     <div class="section-wrap" id="honors">
         <div class="section-header">
             <h2 class="section-title">個人榮譽</h2>
