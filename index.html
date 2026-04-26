@@ -711,9 +711,9 @@
             font-family: var(--mono);
             font-size: 0.72rem;
             color: rgba(255,255,255,0.6);
-            display: inline-block;
-            text-align: center;
-            line-height: 1.45;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 6px 14px;
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 2px;
@@ -721,6 +721,11 @@
             letter-spacing: 0.06em;
             position: relative;
             z-index: 1;
+        }
+
+        .impl-cta-locked-text {
+            text-align: center;
+            line-height: 1.45;
         }
 
         @media (max-width: 700px) {
@@ -970,7 +975,7 @@
                         <span class="impl-feature">互動式網頁查詢</span>
                     </div>
                 </div>
-                <span class="impl-cta-locked">🔒 研究團隊<br>內部使用</span>
+                <span class="impl-cta-locked"><span>🔒</span><span class="impl-cta-locked-text">研究團隊<br>內部使用</span></span>
             </div>
         </div>
     </div>
