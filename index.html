@@ -585,12 +585,12 @@
         .impl-project {
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 32px;
+            gap: 20px;
             align-items: center;
-            padding: 28px 32px;
+            padding: 18px 22px;
             background: linear-gradient(135deg, var(--blue-deep) 0%, #0f2240 60%, #1a1a2e 100%);
             border: 1px solid rgba(184, 150, 62, 0.3);
-            border-radius: 6px;
+            border-radius: 4px;
             text-decoration: none;
             color: var(--white);
             transition: box-shadow var(--transition), transform var(--transition);
@@ -602,17 +602,17 @@
             content: '';
             position: absolute;
             top: 0; right: 0;
-            width: 240px; height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(184,150,62,0.10) 50%, transparent 100%);
+            width: 180px; height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(184,150,62,0.08) 50%, transparent 100%);
             pointer-events: none;
         }
 
         .impl-project:hover {
-            box-shadow: 0 8px 28px rgba(28, 53, 87, 0.28);
-            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(28, 53, 87, 0.22);
+            transform: translateY(-1px);
         }
 
-        .impl-project-eyebrow { margin-bottom: 10px; }
+        .impl-project-eyebrow { margin-bottom: 6px; }
 
         .impl-badge {
             display: inline-flex;
@@ -621,60 +621,60 @@
             background: rgba(184, 150, 62, 0.18);
             border: 1px solid var(--gold);
             color: var(--gold-light);
-            font-size: 0.75rem;
+            font-size: 0.68rem;
             font-family: var(--mono);
-            padding: 3px 12px;
+            padding: 2px 10px;
             border-radius: 2px;
             letter-spacing: 0.08em;
         }
 
         .impl-project-name {
             font-family: var(--serif-display);
-            font-size: 1.5rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            margin-bottom: 6px;
-            line-height: 1.2;
+            margin-bottom: 4px;
+            line-height: 1.3;
         }
 
         .impl-project-en {
             color: var(--gold-light);
             font-style: italic;
             font-weight: 400;
-            font-size: 1.05rem;
-            margin-left: 8px;
+            font-size: 0.85rem;
+            margin-left: 6px;
         }
 
         .impl-project-tagline {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.78);
-            margin-bottom: 16px;
-            line-height: 1.6;
+            font-size: 0.84rem;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 10px;
+            line-height: 1.55;
         }
 
         .impl-project-features {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .impl-feature {
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(184,150,62,0.25);
-            color: rgba(255,255,255,0.82);
-            padding: 3px 10px;
+            border: 1px solid rgba(184,150,62,0.22);
+            color: rgba(255,255,255,0.78);
+            padding: 2px 8px;
             border-radius: 2px;
             letter-spacing: 0.02em;
         }
 
         .impl-cta {
             font-family: var(--serif-display);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--gold-light);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 22px;
+            gap: 6px;
+            padding: 8px 16px;
             border: 1px solid var(--gold);
             border-radius: 2px;
             transition: all var(--transition);
@@ -691,7 +691,7 @@
         .featured-stack {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
 
         .impl-project-locked { cursor: default; }
@@ -709,12 +709,12 @@
 
         .impl-cta-locked {
             font-family: var(--mono);
-            font-size: 0.82rem;
+            font-size: 0.72rem;
             color: rgba(255,255,255,0.6);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 22px;
+            gap: 6px;
+            padding: 8px 16px;
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 2px;
             background: rgba(255,255,255,0.05);
@@ -727,8 +727,8 @@
         @media (max-width: 700px) {
             .impl-project {
                 grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 22px;
+                gap: 14px;
+                padding: 16px 18px;
             }
             .impl-cta,
             .impl-cta-locked { justify-content: center; }
