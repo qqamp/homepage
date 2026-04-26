@@ -688,13 +688,50 @@
             color: var(--ink);
         }
 
+        .featured-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .impl-project-locked { cursor: default; }
+
+        .impl-project-locked:hover {
+            box-shadow: none;
+            transform: none;
+        }
+
+        .impl-badge-internal {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.72);
+        }
+
+        .impl-cta-locked {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.6);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2px;
+            background: rgba(255,255,255,0.05);
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            position: relative;
+            z-index: 1;
+        }
+
         @media (max-width: 700px) {
             .impl-project {
                 grid-template-columns: 1fr;
                 gap: 20px;
                 padding: 22px;
             }
-            .impl-cta { justify-content: center; }
+            .impl-cta,
+            .impl-cta-locked { justify-content: center; }
         }
 
         /* ── 教學 ── */
@@ -894,26 +931,49 @@
             <div class="section-rule"></div>
         </div>
 
-        <a class="impl-project" href="https://qqamp.github.io/duoduorun/" target="_blank" rel="noopener">
-            <div>
-                <div class="impl-project-eyebrow">
-                    <span class="impl-badge">AI-BUILT · 2026</span>
+        <div class="featured-stack">
+            <a class="impl-project" href="https://qqamp.github.io/duoduorun/" target="_blank" rel="noopener">
+                <div>
+                    <div class="impl-project-eyebrow">
+                        <span class="impl-badge">AI-BUILT · 2026</span>
+                    </div>
+                    <div class="impl-project-name">
+                        多多快跑<span class="impl-project-en">DuoDuoRun</span>
+                    </div>
+                    <div class="impl-project-tagline">
+                        為臺灣社會科學師生量身打造的純前端統計分析工具──結合生成式 AI 開發、社科研究方法與隱私保護設計。
+                    </div>
+                    <div class="impl-project-features">
+                        <span class="impl-feature">14 種統計方法</span>
+                        <span class="impl-feature">對齊 SPSS / JASP</span>
+                        <span class="impl-feature">本地運算・零上傳</span>
+                        <span class="impl-feature">中／英 APA 敘述</span>
+                    </div>
                 </div>
-                <div class="impl-project-name">
-                    多多快跑<span class="impl-project-en">DuoDuoRun</span>
+                <span class="impl-cta">開啟工具 →</span>
+            </a>
+
+            <div class="impl-project impl-project-locked">
+                <div>
+                    <div class="impl-project-eyebrow">
+                        <span class="impl-badge impl-badge-internal">INTERNAL · 中央機關</span>
+                    </div>
+                    <div class="impl-project-name">
+                        中央機關 AI 應用調查查詢系統<span class="impl-project-en">AI Adoption Survey</span>
+                    </div>
+                    <div class="impl-project-tagline">
+                        153 筆中央政府機關 AI 應用案例的互動式查詢系統──整合 AI WATCH 框架的組織特徵、服務描述、服務價值三類特徵，可分析 AI 技術類型、應用目的、應用領域、應用範疇、主要功能、預期效益與資料來源。
+                    </div>
+                    <div class="impl-project-features">
+                        <span class="impl-feature">153 筆中央機關案例</span>
+                        <span class="impl-feature">AI WATCH 三類特徵</span>
+                        <span class="impl-feature">技術／效益／領域分析</span>
+                        <span class="impl-feature">互動式網頁查詢</span>
+                    </div>
                 </div>
-                <div class="impl-project-tagline">
-                    為臺灣社會科學師生量身打造的純前端統計分析工具──結合生成式 AI 開發、社科研究方法與隱私保護設計。
-                </div>
-                <div class="impl-project-features">
-                    <span class="impl-feature">14 種統計方法</span>
-                    <span class="impl-feature">對齊 SPSS / JASP</span>
-                    <span class="impl-feature">本地運算・零上傳</span>
-                    <span class="impl-feature">中／英 APA 敘述</span>
-                </div>
+                <span class="impl-cta-locked">🔒 機關內部使用</span>
             </div>
-            <span class="impl-cta">開啟工具 →</span>
-        </a>
+        </div>
     </div>
 
         <!-- ── 榮譽 ── -->
